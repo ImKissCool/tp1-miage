@@ -7,17 +7,20 @@ import com.acme.mailreader.domain.Mail;
 import com.acme.mailreader.utils.MailInvalideException;
 import com.acme.mailreader.utils.MailInvalideException.ErreurMail;
 import com.acme.mailreader.utils.MailSender;
+import com.google.inject.Inject;
 
 public class MailService {
 	
 	private static final int TAILLE_MAX_SUJET = 20;
 	
-	//TODO : injecter par constructeur un sender
+	//DONE : injecter par constructeur un sender
 	private MailSender sender;
 	
 	
+	@Inject
 	public MailService(MailSender sender) {
 		super();
+		this.sender = sender;
 	}
 
 	/**

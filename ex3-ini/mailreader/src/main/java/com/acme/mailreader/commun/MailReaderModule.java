@@ -1,5 +1,8 @@
 package com.acme.mailreader.commun;
 
+import com.acme.mailreader.infrastructure.InMemoryMailSender;
+import com.acme.mailreader.infrastructure.SmtpMailSender;
+import com.acme.mailreader.utils.MailSender;
 import com.google.inject.AbstractModule;
 
 /**
@@ -20,10 +23,11 @@ public class MailReaderModule extends AbstractModule {
 	protected void configure() {
 
 		if (production) {
-			//TODO
+			//DONE
+			bind(MailSender.class).to(SmtpMailSender.class);
 		} else {
-			//TODO
-
+			//DONE
+			bind(MailSender.class).to(InMemoryMailSender.class);
 		}
 	}
 
