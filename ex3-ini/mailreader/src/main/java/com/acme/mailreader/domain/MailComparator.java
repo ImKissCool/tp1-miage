@@ -16,6 +16,9 @@ public class MailComparator implements Comparator<Mail> {
 	public static final int PREMIER_PLUS_GRAND = -1;
 
 	public int compare(Mail mail1, Mail mail2) {
+		if (mailsIdentiques(mail1, mail2) ) {
+			return EGAUX;
+		}
 		if (unDesMailsNul(mail1, mail2)) {
 			return EGAUX;
 		}
@@ -62,6 +65,10 @@ public class MailComparator implements Comparator<Mail> {
 
 	private boolean pasLeMemeSujet(Mail mail1, Mail mail2) {
 		return !mail1.getSujet().equals(mail2.getSujet());
+	}
+	
+	private boolean mailsIdentiques(Mail mail1, Mail mail2) {
+		return System.identityHashCode(mail1) == System.identityHashCode(mail2);
 	}
 
 }

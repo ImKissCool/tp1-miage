@@ -4,11 +4,7 @@ import java.time.Instant;
 
 import com.acme.mailreader.utils.DateIncorrecteException;
 import com.acme.mailreader.utils.DateIncorrecteException.ErreurDate;
-import com.acme.mailreader.utils.InstantConverter;
 
-import cucumber.deps.com.thoughtworks.xstream.annotations.XStreamConverter;
-
-@XStreamConverter(InstantConverter.class)
 public class Mail {
 
 	public enum Statut {
@@ -83,7 +79,6 @@ public class Mail {
 		} else if (date.isAfter(MAX_DATE)) {
 			throw new DateIncorrecteException(ErreurDate.POSTERIEUR_2100);
 		}
-		
 		this.date = date;
 	}
 

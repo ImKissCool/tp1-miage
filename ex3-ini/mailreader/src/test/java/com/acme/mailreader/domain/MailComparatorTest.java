@@ -29,9 +29,30 @@ public class MailComparatorTest {
 		assertThat(comparator.compare(mail1, mail2), is(0));
 	}
 	
-	//TODO
 	//Autres tests unitaires
+	@Test
+	public final void egauxSiMemeMail() {
+		Mail mail1 = new Mail();
+		assertThat(comparator.compare(mail1, mail1), is(0));
+	}
 	
+	@Test
+	public final void pasEgauxSiSujetsDifferents() {
+		Mail mail1 = new Mail();
+		Mail mail2 = new Mail();
+		mail2.setSujet("Sujet2");
+		mail1.setSujet("Sujet1");
+		assertThat(comparator.compare(mail1, mail2), is(-1));
+	}
 	
+	@Test
+	public final void pasEgauxSiImportanceDifferentes() {
+		Mail mail1 = new Mail();
+		Mail mail2 = new Mail();
+		mail2.setImportant(true);
+		mail1.setImportant(false);
+		assertThat(comparator.compare(mail1, mail2), is(1));
+	}
+		
 	
 }
